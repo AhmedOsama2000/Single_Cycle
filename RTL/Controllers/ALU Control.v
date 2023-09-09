@@ -8,8 +8,7 @@ module ALU_Control
 	input  wire       Funct7_5,
 	input  wire       Funct7_0,
 	input  wire       EN_PC,
-	input  wire [6:0] opcode,
-	input  wire       undef_instr,     
+	input  wire [6:0] opcode,    
 	// Output
 	output reg  [ALU_DECODER_IN-1:0] ALU_Ctrl,
 	output reg           			 Sub
@@ -41,7 +40,7 @@ always @(*) begin
 
 	Sub       = 1'b0;
 	ALU_Ctrl = 3'b111;
-	if (undef_instr || !EN_PC) begin
+	if (!EN_PC) begin
 		ALU_Ctrl = 3'b111;
 	end
 	else if (opcode == R_TYPE) begin
@@ -67,13 +66,13 @@ always @(*) begin
 			ALU_Ctrl = 3'b000;
 		end
 		else if (Funct3 == 3'b111 || Funct3 == 3'b100 || Funct3 == 3'b110) begin
-			ALU_Ctrl = 3'b100;
+			ALU_Ctrl = 3'b010;
 		end
 		else if (Funct3 == 3'b001 || Funct3 == 3'b101) begin
-			ALU_Ctrl = 3'b101;
+			ALU_Ctrl = 3'b011;
 		end
 		else if (Funct3 == 3'b010 || Funct3 == 3'b011) begin
-			ALU_Ctrl = 3'b011;
+			ALU_Ctrl = 3'b001;
 		end
 		else begin
 			ALU_Ctrl = 3'b111;
