@@ -21,8 +21,6 @@ module Control_Unit #(
 	output wire       EN_PC,
 	output wire       Branch,
 	output wire       Jump,
-	// undefined instruction
-	output wire       undef_instr,
 	// To ALU Decoders
 	output wire [ALU_DECODER_IN-1:0] ALU_Ctrl
 );
@@ -42,9 +40,7 @@ Main_Decoder main_ctrl (
 	// PC signals
 	.EN_PC(EN_PC),
 	.Branch(Branch),
-	.Jump(Jump),
-	// undefined instruction
-	.undef_instr(undef_instr)
+	.Jump(Jump)
 );
 
 ALU_Control alu_ctrl  
@@ -52,8 +48,7 @@ ALU_Control alu_ctrl
 	.Funct3(Funct3),
 	.Funct7_5(Funct7[5]),
 	.Funct7_0(Funct7[0]),
-	.opcode(Opcode),
-	.undef_instr(undef_instr),
+	.opcode(Opcode)
 	.Sub(Sub),
 	.EN_PC(EN_PC),
 	.ALU_Ctrl(ALU_Ctrl)

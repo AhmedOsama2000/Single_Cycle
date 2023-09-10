@@ -3,7 +3,6 @@ module Main_Decoder
 	// INPUT
 	input wire [6:0] Opcode,
 	input wire       EN_PC,
-	input wire       NOP_Ins,	
 	input wire [4:0] Funct7_6_2, 
 	// OUTPUT
 	// Memory Control Signals
@@ -55,7 +54,6 @@ always @(*) begin
 	alu_src_flags = 2'b00;
 	Branch        = 1'b0;
 	Jump          = 1'b0;
-	undef_instr   = 1'b0;
 
 	// NOP insertion or Instruction is corrupted
 	if (!EN_PC) begin
@@ -64,7 +62,6 @@ always @(*) begin
 		alu_src_flags = 'b0;
 		Branch        = 1'b0;
 	    Jump          = 1'b0;
-		undef_instr   = 1'b0;
 		MEM_Wr_En     = 1'b0;
 	end
 	else begin
@@ -118,7 +115,6 @@ always @(*) begin
 				Reg_Wr_En     = 1'b0;
 				alu_src_flags = 2'b0;
 				pc_src_flags  = 2'b0;
-				undef_instr   = 1'b1;
 			end
 		endcase
 	end
