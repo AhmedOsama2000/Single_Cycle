@@ -1,2 +1,7 @@
-# Single_Cycle
-RV31I Single Cycle Microprocessor
+# RV32I Single Cycle Microprocessor
+
+### Supported ISA
+![Alt text](ISA.png)
+
+### Architecture Implemented
+![Alt text](Single_Cycle.png)
